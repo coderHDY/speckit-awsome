@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": "ceb114de-a857-43bc-9194-2034bea16e2a",
+      "username": "testuser",
+      "passwordHash": "$2b$10$Lslytk57UAwHtBxiSTT9rud0DI0.wNlrUcgznzVhALiWuwljbZPqC",
+      "createdAt": "2026-01-29T07:27:45.865Z"
+    }
+  ]
+}
