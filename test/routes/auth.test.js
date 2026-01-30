@@ -4,9 +4,9 @@
 const request = require('supertest');
 const express = require('express');
 const session = require('express-session');
-const authRoutes = require('../../routes/auth');
-const mongoStorage = require('../../utils/mongoStorage');
-const { connectMongoDB, closeMongoDB } = require('../../utils/mongoConnection');
+const authRoutes = require('@/routes/auth');
+const mongoStorage = require('@/utils/mongoStorage');
+const { connectMongoDB, closeMongoDB } = require('@/utils/mongoConnection');
 
 describe('認証ルート 統合テスト（MongoDB版）', () => {
   let app;

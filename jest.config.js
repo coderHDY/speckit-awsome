@@ -2,8 +2,12 @@ module.exports = {
   // テスト環境の設定
   testEnvironment: 'node',
   
+  // モジュールパスの設定
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/$1'
+  },
+  
   // カバレッジレポートの設定
-  coverageDirectory: 'coverage',
   collectCoverageFrom: [
     'utils/**/*.js',
     'routes/**/*.js',
@@ -35,5 +39,8 @@ module.exports = {
   globalTeardown: '<rootDir>/test/globalTeardown.js',
   
   // タイムアウト設定
-  testTimeout: 10000
+  testTimeout: 10000,
+  
+  // カバレッジディレクトリ
+  coverageDirectory: 'coverage'
 };

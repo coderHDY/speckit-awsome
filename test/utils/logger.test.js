@@ -2,7 +2,7 @@
  * ロギングユーティリティ単体テスト
  */
 
-const logger = require('../../utils/logger');
+const logger = require('@/utils/logger');
 
 describe('logger', () => {
   beforeEach(() => {

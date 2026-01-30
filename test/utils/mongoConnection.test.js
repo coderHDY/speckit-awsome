@@ -2,7 +2,7 @@
  * MongoDB接続モジュール単体テスト
  */
 
-const { connectMongoDB, getDb, closeMongoDB } = require('../../utils/mongoConnection');
+const { connectMongoDB, getDb, closeMongoDB } = require('@/utils/mongoConnection');
 
 describe('mongoConnection', () => {
   afterEach(async () => {

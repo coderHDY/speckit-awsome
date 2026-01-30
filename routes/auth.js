@@ -1,9 +1,9 @@
 const express = require('express');
-const { hashPassword, verifyPassword } = require('../utils/passwordHelper');
-const { generateUUID } = require('../utils/cryptoHelper');
-const { validateUsername, validatePassword, validateRequiredFields } = require('../utils/validator');
-const mongoStorage = require('../utils/mongoStorage');
-const logger = require('../utils/logger');
+const { hashPassword, verifyPassword } = require('@/utils/passwordHelper');
+const { generateUUID } = require('@/utils/cryptoHelper');
+const { validateUsername, validatePassword, validateRequiredFields } = require('@/utils/validator');
+const mongoStorage = require('@/utils/mongoStorage');
+const logger = require('@/utils/logger');
 
 const router = express.Router();
 

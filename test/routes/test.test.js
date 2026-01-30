@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const { getBrowserInfo, getOSInfo } = require('../../utils/userAgentParser');
+const { getBrowserInfo, getOSInfo } = require('@/utils/userAgentParser');
 
 /**
  * /test エンドポイントの統合テスト

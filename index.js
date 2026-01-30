@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
-const authRoutes = require('./routes/auth');
-const { getBrowserInfo, getOSInfo } = require('./utils/userAgentParser');
+const authRoutes = require('@/routes/auth');
+const { getBrowserInfo, getOSInfo } = require('@/utils/userAgentParser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 

@@ -1,4 +1,4 @@
-const { generateUUID } = require('../../utils/cryptoHelper');
+const { generateUUID } = require('@/utils/cryptoHelper');
 
 /**
  * cryptoHelperユーティリティのテスト

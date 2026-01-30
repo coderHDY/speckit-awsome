@@ -2,8 +2,8 @@
  * MongoDB ユーザー储存ユーティリティ単体テスト
  */
 
-const mongoStorage = require('../../utils/mongoStorage');
-const { connectMongoDB, closeMongoDB } = require('../../utils/mongoConnection');
+const mongoStorage = require('@/utils/mongoStorage');
+const { connectMongoDB, closeMongoDB } = require('@/utils/mongoConnection');
 
 describe('mongoStorage', () => {
   beforeAll(async () => {

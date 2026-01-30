@@ -1,4 +1,4 @@
-const { validateUsername, validatePassword, validateRequiredFields } = require('../../utils/validator');
+const { validateUsername, validatePassword, validateRequiredFields } = require('@/utils/validator');
 
 /**
  * validatorユーティリティのテスト

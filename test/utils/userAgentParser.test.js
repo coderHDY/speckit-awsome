@@ -1,4 +1,4 @@
-const { getBrowserInfo, getOSInfo } = require('../../utils/userAgentParser');
+const { getBrowserInfo, getOSInfo } = require('@/utils/userAgentParser');
 
 /**
  * userAgentParserユーティリティのテスト

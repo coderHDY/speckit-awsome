@@ -1,4 +1,4 @@
-const { hashPassword, verifyPassword } = require('../../utils/passwordHelper');
+const { hashPassword, verifyPassword } = require('@/utils/passwordHelper');
 
 /**
  * passwordHelperユーティリティのテスト
