@@ -153,4 +153,4 @@ console.log(data);
 
 ## 関連エンドポイント
 
-- [POST /login](./login.md) - ユーザーログイン
+- [POST /auth/login](./login.md) - ユーザーログイン

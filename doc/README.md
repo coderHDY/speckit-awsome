@@ -16,7 +16,7 @@ http://localhost:3000
 
 新しいユーザーアカウントを作成します。
 
-- **エンドポイント**: `POST /register`
+- **エンドポイント**: `POST /auth/register`
 - **認証**: 不要
 - **詳細**: [register.md](./register.md)
 
@@ -24,7 +24,7 @@ http://localhost:3000
 
 既存ユーザーでログインし、セッションを確立します。
 
-- **エンドポイント**: `POST /login`
+- **エンドポイント**: `POST /auth/login`
 - **認証**: 不要
 - **詳細**: [login.md](./login.md)
 

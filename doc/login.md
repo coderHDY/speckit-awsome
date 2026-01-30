@@ -125,7 +125,7 @@ Content-Type: application/json
 
 ```bash
 # ログイン
-curl -X POST http://localhost:3000/login \
+curl -X POST http://localhost:3000/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "username": "testuser123",
@@ -134,7 +134,7 @@ curl -X POST http://localhost:3000/login \
   -c cookies.txt
 
 # セッションを使用した後続リクエスト
-curl http://localhost:3000/protected-route \
+curl http://localhost:3000/test \
   -b cookies.txt
 ```
 
@@ -216,4 +216,4 @@ try {
 
 ## 関連エンドポイント
 
-- [POST /register](./register.md) - ユーザー登録
+- [POST /auth/register](./register.md) - ユーザー登録
