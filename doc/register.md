@@ -3,7 +3,7 @@
 ## エンドポイント
 
 ```
-POST /register
+POST /auth/register
 ```
 
 ## 説明
@@ -125,7 +125,7 @@ Content-Type: application/json
 ### cURL
 
 ```bash
-curl -X POST http://localhost:3000/register \
+curl -X POST http://localhost:3000/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "username": "newuser",
@@ -136,7 +136,7 @@ curl -X POST http://localhost:3000/register \
 ### JavaScript (fetch)
 
 ```javascript
-const response = await fetch('http://localhost:3000/register', {
+const response = await fetch('http://localhost:3000/auth/register', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'

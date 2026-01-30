@@ -2,7 +2,8 @@ const express = require('express');
 const { hashPassword, verifyPassword } = require('../utils/passwordHelper');
 const { generateUUID } = require('../utils/cryptoHelper');
 const { validateUsername, validatePassword, validateRequiredFields } = require('../utils/validator');
-const { findUserByUsername, addUser } = require('../utils/userStorage');
+const mongoStorage = require('../utils/mongoStorage');
+const logger = require('../utils/logger');
 
 const router = express.Router();
 
@@ -49,7 +50,7 @@ router.post('/register', async (req, res) => {
     }
 
     // ユーザー名の重複チェック
-    const existingUser = findUserByUsername(username);
+    const existingUser = await mongoStorage.findUserByUsername(username);
     if (existingUser) {
       return res.status(409).json({
         success: false,
@@ -72,8 +73,8 @@ router.post('/register', async (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    // ユーザーをデータベースに保存
-    addUser(newUser);
+    // ユーザーをMongoDBに保存
+    await mongoStorage.addUser(newUser);
 
     // 成功レスポンスを返す（パスワードハッシュは含めない）
     res.status(201).json({
@@ -85,7 +86,7 @@ router.post('/register', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('注册错误:', error);
+    logger.error('注册错误', error);
     res.status(500).json({
       success: false,
       message: '服务器内部错误',
@@ -119,7 +120,7 @@ router.post('/login', async (req, res) => {
     }
 
     // ユーザー名でユーザーを検索
-    const user = findUserByUsername(username);
+    const user = await mongoStorage.findUserByUsername(username);
     if (!user) {
       return res.status(401).json({
         success: false,
@@ -154,7 +155,7 @@ router.post('/login', async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('登录错误:', error);
+    logger.error('登录错误', error);
     res.status(500).json({
       success: false,
       message: '服务器内部错误',

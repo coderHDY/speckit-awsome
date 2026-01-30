@@ -1,20 +1,17 @@
 <!--
 Sync Impact Report:
-Version change: Initial → 1.0.0
-Modified principles: N/A (initial creation)
-Added sections:
-  - I. 日本語コメント規則 (Japanese Comments Rule)
-  - II. 第三者ライブラリ抽象化 (Third-Party Library Abstraction)
-  - III. テスト駆動開発 (Test-Driven Development) - NON-NEGOTIABLE
-  - IV. API ドキュメント (API Documentation)
-  - V. アーカイブドキュメント (Archive Documentation)
-  - VI. コミュニケーション言語 (Communication Language)
+Version change: 1.0.1 → 1.1.0
+Modified principles: None
+Added sections: 
+  - VII. Specs ディレクトリ命名規則 (新規原則追加)
 Removed sections: None
 Templates requiring updates:
-  ✅ Updated .specify/templates/plan-template.md
-  ✅ Updated .specify/templates/spec-template.md
-  ✅ Updated .specify/templates/tasks-template.md
-Follow-up TODOs: None
+  ✅ .specify/templates/plan-template.md (更新不要)
+  ✅ .specify/templates/spec-template.md (更新不要)
+  ✅ .specify/templates/tasks-template.md (更新不要)
+Follow-up TODOs: 
+  - 既存の 001-mongodb-auth を 20260130-huang-mongodb-auth にリネーム（推奨）
+Last validation: 2026-01-30
 -->
 
 # Speckit Server Constitution
@@ -79,13 +76,29 @@ Follow-up TODOs: None
 
 ### VI. コミュニケーション言語 (Communication Language)
 
-**ユーザーとのコミュニケーションは中国語を使用する。**
+**ドキュメントは日本語で記述し、ユーザーとのコミュニケーションは中国語を使用する。**
 
-- コミットメッセージ、プルリクエストは中国語で記述
-- エラーメッセージ、ログ出力は中国語を使用
-- README や外部向けドキュメントは中国語で作成
+- すべての `.md` ドキュメントファイルは日本語で記述する
+- コードコメントは日本語で記述する（原則 I に従う）
+- ユーザー向けのエラーメッセージ、ログ出力は中国語を使用
+- コミットメッセージ、プルリクエストの説明は中国語で記述
+- API レスポンスメッセージは中国語を使用
+- ユーザーとの会話・対話は中国語で行う
 
-**理由**: ユーザーとの円滑なコミュニケーションを実現するため。
+**理由**: 技術文書の統一性を保ちつつ、エンドユーザーとの円滑なコミュニケーションを実現するため。
+
+### VII. Specs ディレクトリ命名規則 (Specs Directory Naming Convention) - NON-NEGOTIABLE
+
+**`/specs` ディレクトリ配下の各フィーチャーディレクトリは `YYYYMMDD-git_username-task_name` 形式で命名しなければならない。**
+
+- フォーマット: `日付-GitUserName-タスク名`
+- 例: `20240327-li-auth-mongo`, `20260130-huang-mongodb-auth`
+- 日付は ISO 8601 形式（YYYYMMDD）
+- Git ユーザー名は短縮形を使用する（例: li, huang, wang）
+- タスク名はハイフン区切りで小文字を使用する
+- ディレクトリ名にはスペースを使用しない
+
+**理由**: 複数のフィーチャーが同時並行で開発される環境で、各タスクの作成者と時期を一目で識別でき、オーガナイズされた知識ベースを構築するため。
 
 ## Technology Standards
 
@@ -143,4 +156,4 @@ Follow-up TODOs: None
 - 複雑性の導入には明確な justification が必要
 - Constitution の修正には文書化、承認、移行計画が必要
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-29 | **Last Amended**: 2026-01-29
+**Version**: 1.1.0 | **Ratified**: 2026-01-29 | **Last Amended**: 2026-01-30

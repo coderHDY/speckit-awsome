@@ -1,25 +1,23 @@
+/**
+ * 認証ルートの統合テスト
+ */
 const request = require('supertest');
 const express = require('express');
 const session = require('express-session');
 const authRoutes = require('../../routes/auth');
-const fs = require('fs');
-const path = require('path');
+const mongoStorage = require('../../utils/mongoStorage');
+const { connectMongoDB, closeMongoDB } = require('../../utils/mongoConnection');
 
-/**
- * 認証ルートの統合テスト
- */
-describe('認証ルート 統合テスト', () => {
+describe('認証ルート 統合テスト（MongoDB版）', () => {
   let app;
-  const TEST_USERS_FILE = path.join(__dirname, '../../data/users.json');
-  const BACKUP_FILE = path.join(__dirname, '../../data/users.backup.json');
 
-  // テスト前にアプリを設定
+  // テスト前にMongoDBに接続
+  beforeAll(async () => {
+    await connectMongoDB();
+  });
+
+  // 各テストの前にアプリを設定
   beforeEach(() => {
-    // ユーザーデータのバックアップ
-    if (fs.existsSync(TEST_USERS_FILE)) {
-      fs.copyFileSync(TEST_USERS_FILE, BACKUP_FILE);
-    }
-
     // テスト用アプリの初期化
     app = express();
     app.use(express.json());
@@ -29,26 +27,23 @@ describe('認証ルート 統合テスト', () => {
       saveUninitialized: false,
       cookie: { secure: false }
     }));
-    app.use(authRoutes);
-
-    // テスト用の空のユーザーデータ
-    const initialData = { users: [] };
-    fs.writeFileSync(TEST_USERS_FILE, JSON.stringify(initialData, null, 2));
+    app.use('/auth', authRoutes);
   });
 
-  // テスト後にクリーンアップ
-  afterEach(() => {
-    // バックアップから復元
-    if (fs.existsSync(BACKUP_FILE)) {
-      fs.copyFileSync(BACKUP_FILE, TEST_USERS_FILE);
-      fs.unlinkSync(BACKUP_FILE);
-    }
+  // テスト後にユーザーをクリア
+  afterEach(async () => {
+    await mongoStorage.clearUsers();
   });
 
-  describe('POST /register', () => {
+  // テスト終了後に接続を閉じる
+  afterAll(async () => {
+    await closeMongoDB();
+  });
+
+  describe('POST /auth/register', () => {
     test('有効なデータで登録に成功する', async () => {
       const response = await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'testuser',
           password: 'password123'
@@ -64,7 +59,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('必須フィールド欠如時に400エラーを返す', async () => {
       const response = await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'testuser'
           // passwordが欠けている
@@ -77,7 +72,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('無効なユーザー名で400エラーを返す', async () => {
       const response = await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'ab', // 短すぎる
           password: 'password123'
@@ -90,7 +85,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('無効なパスワードで400エラーを返す', async () => {
       const response = await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'testuser',
           password: '12345' // 短すぎる
@@ -104,7 +99,7 @@ describe('認証ルート 統合テスト', () => {
     test('既存のユーザー名で409エラーを返す', async () => {
       // 最初のユーザーを登録
       await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'existinguser',
           password: 'password123'
@@ -113,7 +108,7 @@ describe('認証ルート 統合テスト', () => {
 
       // 同じユーザー名で再度登録を試みる
       const response = await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'existinguser',
           password: 'differentpassword'
@@ -123,13 +118,49 @@ describe('認証ルート 統合テスト', () => {
       expect(response.body.success).toBe(false);
       expect(response.body.error).toBe('USERNAME_EXISTS');
     });
+
+    test('ユーザー名に無効な文字が含まれるとエラーを返す', async () => {
+      const response = await request(app)
+        .post('/auth/register')
+        .send({
+          username: 'user@invalid',
+          password: 'password123'
+        })
+        .expect(400);
+
+      expect(response.body.error).toBe('INVALID_USERNAME');
+    });
+
+    test('パスワードが長すぎるとエラーを返す', async () => {
+      const response = await request(app)
+        .post('/auth/register')
+        .send({
+          username: 'testuser',
+          password: 'a'.repeat(51)
+        })
+        .expect(400);
+
+      expect(response.body.error).toBe('INVALID_PASSWORD');
+    });
+
+    test('ユーザー名に無効な文字が含まれるとエラーを返す', async () => {
+      const response = await request(app)
+        .post('/auth/register')
+        .send({
+          username: 'user@invalid',
+          password: 'password123'
+        })
+        .expect(400);
+
+      expect(response.body.error).toBe('INVALID_USERNAME');
+    });
   });
 
-  describe('POST /login', () => {
+  describe('POST /auth/login', () => {
     // テスト用ユーザーを事前に登録
     beforeEach(async () => {
       await request(app)
-        .post('/register')
+        .post('/auth/register')
         .send({
           username: 'loginuser',
           password: 'password123'
@@ -138,7 +169,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('正しい認証情報でログインに成功する', async () => {
       const response = await request(app)
-        .post('/login')
+        .post('/auth/login')
         .send({
           username: 'loginuser',
           password: 'password123'
@@ -153,7 +184,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('必須フィールド欠如時に400エラーを返す', async () => {
       const response = await request(app)
-        .post('/login')
+        .post('/auth/login')
         .send({
           username: 'loginuser'
           // passwordが欠けている
@@ -166,7 +197,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('存在しないユーザー名で401エラーを返す', async () => {
       const response = await request(app)
-        .post('/login')
+        .post('/auth/login')
         .send({
           username: 'nonexistent',
           password: 'password123'
@@ -179,7 +210,7 @@ describe('認証ルート 統合テスト', () => {
 
     test('誤ったパスワードで401エラーを返す', async () => {
       const response = await request(app)
-        .post('/login')
+        .post('/auth/login')
         .send({
           username: 'loginuser',
           password: 'wrongpassword'
@@ -190,11 +221,34 @@ describe('認証ルート 統合テスト', () => {
       expect(response.body.error).toBe('INVALID_CREDENTIALS');
     });
 
+    test('ユーザー列挙攻撃を防止する（同じメッセージを返す）', async () => {
+      // 存在しないユーザーでのログイン
+      const nonexistentResponse = await request(app)
+        .post('/auth/login')
+        .send({
+          username: 'nonexistent',
+          password: 'password123'
+        })
+        .expect(401);
+
+      // 間違ったパスワードでのログイン
+      const wrongPasswordResponse = await request(app)
+        .post('/auth/login')
+        .send({
+          username: 'loginuser',
+          password: 'wrongpassword'
+        })
+        .expect(401);
+
+      // 両方とも同じステータスコードとエラーメッセージを返す
+      expect(nonexistentResponse.body.message).toBe(wrongPasswordResponse.body.message);
+    });
+
     test('ログイン成功時にセッションが作成される', async () => {
       const agent = request.agent(app);
       
       const loginResponse = await agent
-        .post('/login')
+        .post('/auth/login')
         .send({
           username: 'loginuser',
           password: 'password123'

@@ -23,7 +23,7 @@ app.use(session({
 }));
 
 // ルート設定
-app.use(authRoutes); // 認証ルートをマウント
+app.use('/auth', authRoutes); // 認証ルートをマウント（/auth プレフィックス付き）
 
 /**
  * GET /test - ブラウザ情報を返すエンドポイント

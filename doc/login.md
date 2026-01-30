@@ -3,7 +3,7 @@
 ## エンドポイント
 
 ```
-POST /login
+POST /auth/login
 ```
 
 ## 説明

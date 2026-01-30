@@ -8,6 +8,7 @@ module.exports = {
     'utils/**/*.js',
     'routes/**/*.js',
     '!index.js', // サーバー起動ファイルは除外
+    '!utils/userStorage.js', // 旧版本、MongoDB移行済み
     '!**/node_modules/**'
   ],
   
@@ -28,6 +29,10 @@ module.exports = {
   
   // セットアップファイル
   setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
+  
+  // グローバルセットアップ/テアダウン（mongodb-memory-server）
+  globalSetup: '<rootDir>/test/globalSetup.js',
+  globalTeardown: '<rootDir>/test/globalTeardown.js',
   
   // タイムアウト設定
   testTimeout: 10000

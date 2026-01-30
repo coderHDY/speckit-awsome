@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/validator.js</title>
+    <title>Code coverage report for utils/logger.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> validator.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> logger.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -110,7 +110,10 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -121,12 +124,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -134,12 +132,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,61 +141,77 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">56x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * バリデーションユーティリティ
- * 入力値の検証ロジックを提供
+ * ロギングユーティリティ
+ * 内部的には console を使用
+ * 後で Winston や Pino などのロギングライブラリに切り替え可能
  */
 &nbsp;
 /**
- * ユーザー名の形式を検証する
- * ルール: 3-20文字、英数字とアンダースコアのみ
- * @param {string} username - ユーザー名
- * @returns {boolean} 検証結果
+ * 一般情報をログ出力
+ * @param {string} message ログメッセージ
  */
-function validateUsername(username) {
-  if (!username || typeof username !== 'string') {
-    return false;
-  }
-  const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
-  return usernameRegex.test(username);
+function info(message) {
+  console.log(`[INFO] ${new Date().toISOString()} - ${message}`);
 }
 &nbsp;
 /**
- * パスワードの長さを検証する
- * ルール: 6-50文字
- * @param {string} password - パスワード
- * @returns {boolean} 検証結果
+ * 警告をログ出力
+ * @param {string} message ログメッセージ
  */
-function validatePassword(password) {
-  if (!password || typeof password !== 'string') {
-    return false;
-  }
-  return password.length &gt;= 6 &amp;&amp; password.length &lt;= 50;
+function warn(message) {
+  console.warn(`[WARN] ${new Date().toISOString()} - ${message}`);
 }
 &nbsp;
 /**
- * 必須フィールドの存在を検証する
- * @param {Object} fields - フィールドオブジェクト
- * @param {Array&lt;string&gt;} requiredFields - 必須フィールド名の配列
- * @returns {boolean} 検証結果
+ * エラーをログ出力
+ * @param {string} message ログメッセージ
+ * @param {Error} error エラーオブジェクト（オプション）
  */
-function validateRequiredFields(fields, requiredFields) {
-  return requiredFields.every(field =&gt; fields[field] != null &amp;&amp; fields[field] !== '');
+function error(message, error) {
+  console.error(`[ERROR] ${new Date().toISOString()} - ${message}`);
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (error &amp;&amp; error.stack) {
+    console.error(`Stack: ${error.stack}`);
+  }
+}
+&nbsp;
+/**
+ * デバッグ情報をログ出力
+ * @param {string} message ログメッセージ
+ */
+function debug(message) {
+  if (process.env.DEBUG === 'true') {
+    console.log(`[DEBUG] ${new Date().toISOString()} - ${message}`);
+  }
 }
 &nbsp;
 module.exports = {
-  validateUsername,
-  validatePassword,
-  validateRequiredFields
+  info,
+  warn,
+  error,
+  debug
 };
 &nbsp;</pre></td></tr></table></pre>
 

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/userStorage.js</title>
+    <title>Code coverage report for utils/mongoConnection.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> userStorage.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> mongoConnection.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>25/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">41.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>25/30</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -127,49 +127,43 @@
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,12 +172,54 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,69 +227,126 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const fs = <span class="cstat-no" title="statement not covered" >require('fs');</span>
-const path = <span class="cstat-no" title="statement not covered" >require('path');</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">62x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * MongoDB接続管理モジュール
+ * シングルトンパターンで接続を管理し、接続プールを再利用
+ */
 &nbsp;
-const USERS_FILE = <span class="cstat-no" title="statement not covered" >path.join(__dirname, '../data/users.json');</span>
+const { MongoClient } = require('mongodb');
+&nbsp;
+let mongoClient;
+let mongoDb;
 &nbsp;
 /**
- * ユーザーデータファイルを初期化する（存在しない場合）
+ * MongoDBに接続する
+ * @returns {Promise&lt;Object&gt;} MongoDB Database インスタンス
  */
-function <span class="fstat-no" title="function not covered" >initUsersFile(</span>) {
-<span class="cstat-no" title="statement not covered" >  if (!fs.existsSync(USERS_FILE)) {</span>
-    const initialData = <span class="cstat-no" title="statement not covered" >{ users: [] };</span>
-<span class="cstat-no" title="statement not covered" >    fs.writeFileSync(USERS_FILE, JSON.stringify(initialData, null, 2), 'utf8');</span>
+async function connectMongoDB() {
+  // 既に接続済みの場合はそれを返す
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (mongoDb) {
+<span class="cstat-no" title="statement not covered" >    return mongoDb;</span>
+  }
+&nbsp;
+  try {
+    const uri = process.env.MONGODB_URI || <span class="branch-1 cbranch-no" title="branch not covered" >'mongodb://localhost:27017';</span>
+    const dbName = process.env.MONGODB_DB || <span class="branch-1 cbranch-no" title="branch not covered" >'speckit';</span>
+&nbsp;
+    // MongoClient を初期化（デフォルト接続プール設定）
+    mongoClient = new MongoClient(uri, {
+      maxPoolSize: 10,
+      minPoolSize: 1,
+      serverSelectionTimeoutMS: 5000
+    });
+&nbsp;
+    // MongoDB に接続
+    await mongoClient.connect();
+    mongoDb = mongoClient.db(dbName);
+&nbsp;
+    // インデックスを作成
+    await ensureIndexes(mongoDb);
+&nbsp;
+    console.log(`[INFO] ${new Date().toISOString()} - MongoDBに接続しました: ${dbName}`);
+    return mongoDb;
+  } catch (error) {
+    console.error(`[ERROR] ${new Date().toISOString()} - MongoDB接続エラー: ${error.message}`);
+    throw error;
   }
 }
 &nbsp;
 /**
- * すべてのユーザーデータを読み取る
- * @returns {Array} ユーザー配列
+ * インデックスを作成・確保する
+ * @param {Object} db MongoDB Database インスタンス
  */
-function <span class="fstat-no" title="function not covered" >readUsers(</span>) {
-<span class="cstat-no" title="statement not covered" >  initUsersFile();</span>
-  const data = <span class="cstat-no" title="statement not covered" >fs.readFileSync(USERS_FILE, 'utf8');</span>
-  const parsed = <span class="cstat-no" title="statement not covered" >JSON.parse(data);</span>
-<span class="cstat-no" title="statement not covered" >  return parsed.users || [];</span>
+async function ensureIndexes(db) {
+  try {
+    const usersCollection = db.collection('users');
+    
+    // username に一意のインデックスを作成
+    await usersCollection.createIndex({ username: 1 }, { unique: true });
+    
+    console.log(`[INFO] ${new Date().toISOString()} - インデックスを作成しました`);
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    console.error(`[ERROR] ${new Date().toISOString()} - インデックス作成エラー: ${error.message}`);</span>
+    // インデックスが既に存在する場合はエラーを無視
+<span class="cstat-no" title="statement not covered" >    if (!error.message.includes('duplicate key error')) {</span>
+<span class="cstat-no" title="statement not covered" >      throw error;</span>
+    }
+  }
 }
 &nbsp;
 /**
- * ユーザーデータを保存する
- * @param {Array} users - ユーザー配列
+ * MongoDB接続を閉じる
  */
-function <span class="fstat-no" title="function not covered" >saveUsers(</span>users) {
-  const data = <span class="cstat-no" title="statement not covered" >{ users };</span>
-<span class="cstat-no" title="statement not covered" >  fs.writeFileSync(USERS_FILE, JSON.stringify(data, null, 2), 'utf8');</span>
+async function closeMongoDB() {
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (mongoClient) {
+    await mongoClient.close();
+    mongoClient = null;
+    mongoDb = null;
+    console.log(`[INFO] ${new Date().toISOString()} - MongoDB接続を閉じました`);
+  }
 }
 &nbsp;
 /**
- * ユーザー名でユーザーを検索する
- * @param {string} username - ユーザー名
- * @returns {Object|null} ユーザーオブジェクトまたはnull
+ * MongoDB Database インスタンスを取得
+ * @returns {Promise&lt;Object&gt;} MongoDB Database インスタンス
  */
-function <span class="fstat-no" title="function not covered" >findUserByUsername(</span>username) {
-  const users = <span class="cstat-no" title="statement not covered" >readUsers();</span>
-<span class="cstat-no" title="statement not covered" >  return users.find(<span class="fstat-no" title="function not covered" >us</span>er =&gt; <span class="cstat-no" title="statement not covered" >user.username === username)</span> || null;</span>
+async function getDb() {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!mongoDb) {
+<span class="cstat-no" title="statement not covered" >    return await connectMongoDB();</span>
+  }
+  return mongoDb;
 }
 &nbsp;
-/**
- * 新しいユーザーを追加する
- * @param {Object} user - ユーザーオブジェクト {id, username, passwordHash, createdAt}
- * @returns {Object} 追加されたユーザー
- */
-function <span class="fstat-no" title="function not covered" >addUser(</span>user) {
-  const users = <span class="cstat-no" title="statement not covered" >readUsers();</span>
-<span class="cstat-no" title="statement not covered" >  users.push(user);</span>
-<span class="cstat-no" title="statement not covered" >  saveUsers(users);</span>
-<span class="cstat-no" title="statement not covered" >  return user;</span>
-}
-&nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = {</span>
-  readUsers,
-  saveUsers,
-  findUserByUsername,
-  addUser,
-  initUsersFile
+module.exports = {
+  connectMongoDB,
+  getDb,
+  closeMongoDB
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -262,7 +355,7 @@ function <span class="fstat-no" title="function not covered" >addUser(</span>use
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-01-30T01:46:25.074Z
+                at 2026-01-30T01:46:46.910Z
             </div>
         <script src="../prettify.js"></script>
         <script>
