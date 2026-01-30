@@ -1,11 +1,29 @@
+/**
+ * Path alias 設定
+ * module-alias により @/ プレフィックスをサポート
+ */
+require('module-alias/register');
+const moduleAlias = require('module-alias');
+moduleAlias.addAliases({
+  '@': __dirname
+});
+
 const express = require('express');
 const session = require('express-session');
+const cors = require('cors');
 const authRoutes = require('@/routes/auth');
 const { getBrowserInfo, getOSInfo } = require('@/utils/userAgentParser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ミドルウェア設定
+/**
+ * CORS ミドルウェア
+ * すべてのオリジンからのクロスオリジンリクエストを許可
+ * 本番環境では特定のオリジンのみを許可するように設定すること
+ */
+app.use(cors());
+
 app.use(express.json()); // JSONリクエストボディをパース
 
 // セッション設定

@@ -28,6 +28,14 @@ http://localhost:3000
 - **認証**: 不要
 - **詳細**: [login.md](./login.md)
 
+### ユーザーログアウト
+
+現在のユーザーセッションを終了します。
+
+- **エンドポイント**: `POST /auth/logout`
+- **認証**: 不要
+- **詳細**: [logout.md](./logout.md)
+
 ## ユーティリティエンドポイント
 
 ### ブラウザ情報取得
@@ -109,7 +117,49 @@ Cookie: connect.sid=s%3A...
 
 ## CORS設定
 
-現在、CORSは設定されていません。異なるドメインからのリクエストが必要な場合は、サーバー設定を更新してください。
+**現在の設定**: すべてのオリジンからのクロスオリジンリクエスト（CORS）を許可しています。
+
+### サポートされているメソッド
+
+- GET
+- POST
+- PUT
+- DELETE
+- PATCH
+- OPTIONS
+
+### 許可されるオリジン
+
+現在、すべてのオリジンからのリクエストを受け入れています:
+
+```
+Access-Control-Allow-Origin: *
+```
+
+### 本番環境での設定
+
+**セキュリティ上の注意**: 開発環境では`*`を使用していますが、本番環境では以下のように特定のオリジンのみを許可するように設定してください:
+
+```javascript
+const cors = require('cors');
+
+const corsOptions = {
+  origin: ['https://yourdomain.com', 'https://app.yourdomain.com'],
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+```
+
+**環境変数での設定** (推奨):
+
+```bash
+# .env.local
+CORS_ORIGIN=https://yourdomain.com,https://app.yourdomain.com
+```
+
+詳細は [CORS.md](./CORS.md) を参照してください。
 
 ## レート制限
 

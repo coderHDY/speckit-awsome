@@ -164,4 +164,46 @@ router.post('/login', async (req, res) => {
   }
 });
 
+/**
+ * POST /logout - ユーザーログアウトエンドポイント
+ * 
+ * セッションを破棄し、ユーザーのログアウト処理を実行します
+ * 未ログインユーザーがアクセスしても成功レスポンスを返します（セッションがない場合）
+ * 
+ * リクエストボディ:
+ * - なし
+ * 
+ * レスポンス:
+ * - 成功: 200 OK, 成功メッセージを返す
+ * - 失敗: 500 サーバーエラー
+ */
+router.post('/logout', async (req, res) => {
+  try {
+    // セッション破棄
+    req.session.destroy((err) => {
+      if (err) {
+        logger.error('ログアウト時のセッション破棄エラー', err);
+        return res.status(500).json({
+          success: false,
+          message: '服务器内部错误',
+          error: 'SESSION_DESTROY_ERROR'
+        });
+      }
+
+      // 成功レスポンスを返す
+      res.json({
+        success: true,
+        message: '登出成功'
+      });
+    });
+  } catch (error) {
+    logger.error('ログアウト処理エラー', error);
+    res.status(500).json({
+      success: false,
+      message: '服务器内部错误',
+      error: 'INTERNAL_ERROR'
+    });
+  }
+});
+
 module.exports = router;

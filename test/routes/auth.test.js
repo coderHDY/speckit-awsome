@@ -258,4 +258,94 @@ describe('認証ルート 統合テスト（MongoDB版）', () => {
       expect(loginResponse.headers['set-cookie']).toBeDefined();
     });
   });
+
+  describe('POST /auth/logout', () => {
+    test('ログイン後のログアウトに成功する', async () => {
+      // 最初にユーザーを登録
+      await request(app)
+        .post('/auth/register')
+        .send({
+          username: 'testuser',
+          password: 'password123'
+        })
+        .expect(201);
+
+      // ログイン
+      const loginResponse = await request(app)
+        .post('/auth/login')
+        .send({
+          username: 'testuser',
+          password: 'password123'
+        })
+        .expect(200);
+
+      // セッションCookieを取得
+      const cookie = loginResponse.headers['set-cookie'];
+
+      // ログアウト
+      const logoutResponse = await request(app)
+        .post('/auth/logout')
+        .set('Cookie', cookie)
+        .expect(200);
+
+      expect(logoutResponse.body.success).toBe(true);
+      expect(logoutResponse.body.message).toBe('登出成功');
+    });
+
+    test('未ログインユーザーのログアウトは成功する', async () => {
+      // ログインしていない状態でログアウト
+      const response = await request(app)
+        .post('/auth/logout')
+        .expect(200);
+
+      expect(response.body.success).toBe(true);
+      expect(response.body.message).toBe('登出成功');
+    });
+
+    test('ログアウト後はセッションが無効になる', async () => {
+      // ユーザーを登録
+      await request(app)
+        .post('/auth/register')
+        .send({
+          username: 'testuser2',
+          password: 'password456'
+        })
+        .expect(201);
+
+      // ログイン
+      const loginResponse = await request(app)
+        .post('/auth/login')
+        .send({
+          username: 'testuser2',
+          password: 'password456'
+        })
+        .expect(200);
+
+      const cookie = loginResponse.headers['set-cookie'];
+
+      // ログアウト
+      await request(app)
+        .post('/auth/logout')
+        .set('Cookie', cookie)
+        .expect(200);
+
+      // ログアウト後にセッションCookieを使用してアクセス
+      // 注：この後、セッション情報を確認するエンドポイントがあれば、
+      // 未認証状態であることを確認できます
+    });
+
+    test('複数回ログアウトしてもエラーが発生しない', async () => {
+      // 1回目のログアウト
+      await request(app)
+        .post('/auth/logout')
+        .expect(200);
+
+      // 2回目のログアウト
+      const response = await request(app)
+        .post('/auth/logout')
+        .expect(200);
+
+      expect(response.body.success).toBe(true);
+    });
+  });
 });
