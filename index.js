@@ -13,6 +13,11 @@ const session = require('express-session');
 const cors = require('cors');
 const authRoutes = require('@/routes/auth');
 const { getBrowserInfo, getOSInfo } = require('@/utils/userAgentParser');
+const {
+  buildDateSuccessPayload,
+  buildDateErrorPayload
+} = require('@/utils/dateTimeService');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -82,10 +87,33 @@ app.get('/test', (req, res) => {
 });
 
 /**
+ * GET /date - 主流タイムゾーンの現在時刻を返す
+ */
+app.get('/date', (req, res) => {
+  try {
+    // 同一レスポンス内で時刻差が出ないようにスナップショットを固定
+    const snapshot = new Date();
+    const payload = buildDateSuccessPayload(snapshot);
+
+    res.json({
+      success: true,
+      message: '当前时间查询成功',
+      data: payload
+    });
+  } catch (error) {
+    res.status(500).json(buildDateErrorPayload(error));
+  }
+});
+
+/**
  * サーバーを起動
  * 指定されたポートでHTTPサーバーをリッスン開始
  */
-app.listen(PORT, () => {
-  console.log(`服务器运行在 http://localhost:${PORT}`);
-  console.log(`访问 http://localhost:${PORT}/test 查看浏览器信息`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`服务器运行在 http://localhost:${PORT}`);
+    console.log(`访问 http://localhost:${PORT}/test 查看浏览器信息`);
+  });
+}
+
+module.exports = app;
