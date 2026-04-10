@@ -3,3 +3,12 @@ node_modules/
 .DS_Store
 *.log
 .cursor
+dist/
+build/
+coverage/
+.env*
+.idea/
+.vscode/
+Thumbs.db
+*.tmp
+*.swp
